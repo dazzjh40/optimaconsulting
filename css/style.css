@@ -1,37 +1,41 @@
 body {
     margin:0;
     font-family: Arial, sans-serif;
-    background:#0d0d0d;
+    background:#0b0b0b;
     color:#ffffff;
-    line-height:1.6;
 }
 
-.container {
-    max-width:1100px;
-    margin:auto;
-    padding:20px;
-}
-
-header {
+.hero {
+    position:relative;
+    height:80vh;
+    background:url('../images/hero.jpg') center/cover no-repeat;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     text-align:center;
-    padding:60px 20px;
-    background:linear-gradient(180deg,#111,#000);
+}
+
+.hero-overlay {
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.65);
+}
+
+.hero-content {
+    position:relative;
+    z-index:2;
+    max-width:800px;
 }
 
 h1 {
-    font-size:2.5rem;
-    margin-bottom:10px;
-}
-
-h2 {
-    color:#00ff9c;
-    margin-top:40px;
+    font-size:3rem;
 }
 
 .hero p {
     font-size:1.2rem;
-    max-width:700px;
-    margin:20px auto;
 }
 
 .btn {
@@ -45,29 +49,59 @@ h2 {
     border-radius:5px;
 }
 
-.section {
+.container {
+    max-width:1100px;
+    margin:auto;
     padding:40px 20px;
+}
+
+.section {
+    margin-bottom:40px;
+}
+
+.grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.card {
+    background:#161616;
+    border-radius:10px;
+    overflow:hidden;
+    transition:0.3s;
+}
+
+.card img {
+    width:100%;
+    height:180px;
+    object-fit:cover;
+}
+
+.card h3 {
+    padding:15px 15px 0 15px;
+}
+
+.card p {
+    padding:0 15px 20px 15px;
+    color:#ccc;
+}
+
+.card:hover {
+    transform:translateY(-5px);
+}
+
+h2 {
+    color:#00ff9c;
+    margin-bottom:20px;
 }
 
 .center {
     text-align:center;
 }
 
-.grid {
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:20px;
-}
-
-.card {
-    background:#1a1a1a;
-    padding:20px;
-    border-radius:8px;
-}
-
 .footer {
     text-align:center;
     padding:30px;
-    font-size:0.9rem;
-    color:#aaa;
+    color:#777;
 }
