@@ -1,6 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
 
+    console.log("cookie.js loaded");
+
     const consent = localStorage.getItem("cookie_consent");
+    console.log("Consent value:", consent);
 
     if (!consent) {
         showBanner();
@@ -11,13 +14,16 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function showBanner() {
+        console.log("Showing cookie banner");
+
         const banner = document.createElement("div");
         banner.className = "cookie-banner";
 
         banner.innerHTML = `
             <div class="cookie-inner">
                 <p>
-                    We use cookies to analyse website traffic and improve our services.
+                    We use cookies to analyse traffic and improve our services. 
+                    See our <a href="/privacy.html" style="color:#00e0a4;">Privacy Policy</a>.
                 </p>
                 <div class="cookie-buttons">
                     <button id="acceptCookies">Accept</button>
@@ -28,30 +34,41 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.body.appendChild(banner);
 
-        document.getElementById("acceptCookies").onclick = function () {
-            localStorage.setItem("cookie_consent", "accepted");
-            banner.remove();
-            loadAnalytics();
-        };
+        // Attach events AFTER element exists
+        const acceptBtn = document.getElementById("acceptCookies");
+        const rejectBtn = document.getElementById("rejectCookies");
 
-        document.getElementById("rejectCookies").onclick = function () {
-            localStorage.setItem("cookie_consent", "rejected");
-            banner.remove();
-        };
+        if (acceptBtn) {
+            acceptBtn.onclick = function () {
+                localStorage.setItem("cookie_consent", "accepted");
+                banner.remove();
+                loadAnalytics();
+            };
+        }
+
+        if (rejectBtn) {
+            rejectBtn.onclick = function () {
+                localStorage.setItem("cookie_consent", "rejected");
+                banner.remove();
+            };
+        }
     }
 
     function loadAnalytics() {
         if (window.gaLoaded) return;
         window.gaLoaded = true;
 
-        // Load Google script
+        console.log("Loading Google Analytics");
+
         const script = document.createElement("script");
         script.src = "https://www.googletagmanager.com/gtag/js?id=G-69V22F8BZN";
         script.async = true;
+
         document.head.appendChild(script);
 
         script.onload = function () {
             window.dataLayer = window.dataLayer || [];
+
             function gtag(){dataLayer.push(arguments);}
             window.gtag = gtag;
 
