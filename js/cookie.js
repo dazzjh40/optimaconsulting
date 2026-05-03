@@ -2,6 +2,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     console.log("cookie.js loaded");
 
+    // Default consent state (GDPR best practice)
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    window.gtag = gtag;
+
+    gtag('consent', 'default', {
+        analytics_storage: 'denied'
+    });
+
     const consent = localStorage.getItem("cookie_consent");
     console.log("Consent value:", consent);
 
@@ -22,8 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
         banner.innerHTML = `
             <div class="cookie-inner">
                 <p>
-                    We use cookies to analyse traffic and improve our services. 
-                    See our <a href="/privacy.html" style="color:#00e0a4;">Privacy Policy</a>.
+                    We use cookies to analyse traffic and improve our services. Analytics cookies are only set with your consent. 
+                    See our <a href="/privacy.html">Privacy Policy</a> for details.
                 </p>
                 <div class="cookie-buttons">
                     <button id="acceptCookies">Accept</button>
@@ -34,7 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.body.appendChild(banner);
 
-        // Attach events AFTER element exists
         const acceptBtn = document.getElementById("acceptCookies");
         const rejectBtn = document.getElementById("rejectCookies");
 
@@ -74,6 +82,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
             gtag('js', new Date());
 
+            // Update consent state AFTER accept
+            gtag('consent', 'update', {
+                analytics_storage: 'granted'
+            });
+
             gtag('config', 'G-69V22F8BZN', {
                 anonymize_ip: true
             });
@@ -81,3 +94,10 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+
+
+// ✅ Global reset function (OUTSIDE DOMContentLoaded)
+window.resetCookieConsent = function () {
+    localStorage.removeItem("cookie_consent");
+    location.reload();
+};
