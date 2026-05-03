@@ -87,9 +87,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 analytics_storage: 'granted'
             });
 
-            gtag('config', 'G-69V22F8BZN', {
-                anonymize_ip: true
-            });
+gtag('config', 'G-69V22F8BZN', {
+    anonymize_ip: true,
+    debug_mode: true
+});
         };
     }
 
