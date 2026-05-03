@@ -101,3 +101,12 @@ window.resetCookieConsent = function () {
     localStorage.removeItem("cookie_consent");
     location.reload();
 };
+
+function trackCTA(eventName) {
+    if (window.gtag && localStorage.getItem("cookie_consent") === "accepted") {
+        gtag('event', eventName, {
+            event_category: 'engagement',
+            event_label: 'CTA Click'
+        });
+    }
+}
