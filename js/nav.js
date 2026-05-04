@@ -1,10 +1,5 @@
-fetch('includes/nav.html')
-  .then(response => response.text())
-  .then(data => {
-    document.getElementById('nav-placeholder').innerHTML = data;
-  });
-
-  document.addEventListener("DOMContentLoaded", function () {
+// Existing fetch logic to load nav.html
+document.addEventListener("DOMContentLoaded", function () {
   fetch('./includes/nav.html')
     .then(res => res.text())
     .then(data => {
@@ -17,8 +12,16 @@ fetch('includes/nav.html')
 
         links.forEach(link => {
           if (link.getAttribute("href") === current) {
-            link.style.color = "#00ff9c";
+            link.style.color = "#00ff9c"; // Highlight active link
           }
+        });
+        
+        // Hamburger menu toggle logic
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('navMenu');
+        
+        hamburger.addEventListener('click', () => {
+          navMenu.classList.toggle('show'); // Toggle menu visibility
         });
       }
     });
