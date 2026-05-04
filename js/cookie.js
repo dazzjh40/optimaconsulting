@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         // Load GA script
         const script = document.createElement("script");
-        script.src = "https://www.googletagmanager.com/gtag/js?id=G-69V22F8BZN";
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-P6N0KNTGHP";
         script.async = true;
         document.head.appendChild(script);
 
