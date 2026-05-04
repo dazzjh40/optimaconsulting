@@ -2,15 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     console.log("cookie.js loaded");
 
-    // Default consent state (GDPR best practice)
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    window.gtag = gtag;
-
-    gtag('consent', 'default', {
-        analytics_storage: 'denied'
-    });
-
     const consent = localStorage.getItem("cookie_consent");
     console.log("Consent value:", consent);
 
@@ -31,8 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
         banner.innerHTML = `
             <div class="cookie-inner">
                 <p>
-                    We use cookies to analyse traffic and improve our services. Analytics cookies are only set with your consent. 
-                    See our <a href="/privacy.html">Privacy Policy</a> for details.
+                    We use cookies to analyse website traffic and improve our services.
                 </p>
                 <div class="cookie-buttons">
                     <button id="acceptCookies">Accept</button>
@@ -43,26 +33,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
         document.body.appendChild(banner);
 
-        const acceptBtn = document.getElementById("acceptCookies");
-        const rejectBtn = document.getElementById("rejectCookies");
+        document.getElementById("acceptCookies").onclick = function () {
+            localStorage.setItem("cookie_consent", "accepted");
+            banner.remove();
+            loadAnalytics();
+        };
 
-        if (acceptBtn) {
-            acceptBtn.onclick = function () {
-                localStorage.setItem("cookie_consent", "accepted");
-                banner.remove();
-                loadAnalytics();
-            };
-        }
-
-        if (rejectBtn) {
-            rejectBtn.onclick = function () {
-                localStorage.setItem("cookie_consent", "rejected");
-                banner.remove();
-            };
-        }
+        document.getElementById("rejectCookies").onclick = function () {
+            localStorage.setItem("cookie_consent", "rejected");
+            banner.remove();
+        };
     }
 
     function loadAnalytics() {
+
         if (window.gaLoaded) return;
         window.gaLoaded = true;
 
@@ -71,43 +55,41 @@ document.addEventListener("DOMContentLoaded", function () {
         const script = document.createElement("script");
         script.src = "https://www.googletagmanager.com/gtag/js?id=G-69V22F8BZN";
         script.async = true;
-
         document.head.appendChild(script);
 
         script.onload = function () {
-            window.dataLayer = window.dataLayer || [];
 
+            console.log("GA script loaded");
+
+            window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             window.gtag = gtag;
 
+            // Initialise GA
             gtag('js', new Date());
 
-            // Update consent state AFTER accept
-            gtag('consent', 'update', {
-                analytics_storage: 'granted'
+            // Configure property (CRITICAL)
+            gtag('config', 'G-69V22F8BZN', {
+                anonymize_ip: true,
+                debug_mode: true
             });
 
-gtag('config', 'G-69V22F8BZN', {
-    anonymize_ip: true,
-    debug_mode: true
-});
+            // Force a page view AFTER config
+            gtag('event', 'page_view', {
+                debug_mode: true
+            });
+
+            console.log("GA fully initialised");
         };
     }
 
 });
 
+/* -------------------------------------------------- */
+/* OPTIONAL: RESET CONSENT (FOR TESTING OR SETTINGS)  */
+/* -------------------------------------------------- */
 
-// ✅ Global reset function (OUTSIDE DOMContentLoaded)
 window.resetCookieConsent = function () {
     localStorage.removeItem("cookie_consent");
     location.reload();
 };
-
-function trackCTA(eventName) {
-    if (window.gtag && localStorage.getItem("cookie_consent") === "accepted") {
-        gtag('event', eventName, {
-            event_category: 'engagement',
-            event_label: 'CTA Click'
-        });
-    }
-}
