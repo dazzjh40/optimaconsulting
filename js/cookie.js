@@ -52,41 +52,36 @@ document.addEventListener("DOMContentLoaded", function () {
 
         console.log("Loading Google Analytics");
 
+        // Ensure dataLayer exists BEFORE script loads
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function(){ dataLayer.push(arguments); };
+
+        // Load GA script
         const script = document.createElement("script");
         script.src = "https://www.googletagmanager.com/gtag/js?id=G-69V22F8BZN";
         script.async = true;
         document.head.appendChild(script);
 
-        script.onload = function () {
+        // Initialise immediately
+        gtag('js', new Date());
 
-            console.log("GA script loaded");
+        gtag('config', 'G-69V22F8BZN', {
+            anonymize_ip: true,
+            debug_mode: true
+        });
 
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            window.gtag = gtag;
+        console.log("GA configured");
 
-            // Initialise GA
-            gtag('js', new Date());
-
-            // Configure property (CRITICAL)
-            gtag('config', 'G-69V22F8BZN', {
-                anonymize_ip: true,
-                debug_mode: true
-            });
-
-            // Force a page view AFTER config
-            gtag('event', 'page_view', {
-                debug_mode: true
-            });
-
-            console.log("GA fully initialised");
-        };
+        // Fire a test page_view AFTER config
+        setTimeout(() => {
+            gtag('event', 'page_view', { debug_mode: true });
+        }, 500);
     }
 
-});
+}); // ✅ THIS WAS MISSING
 
 /* -------------------------------------------------- */
-/* OPTIONAL: RESET CONSENT (FOR TESTING OR SETTINGS)  */
+/* OPTIONAL: RESET CONSENT (GLOBAL SCOPE)             */
 /* -------------------------------------------------- */
 
 window.resetCookieConsent = function () {
