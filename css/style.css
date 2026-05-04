@@ -543,6 +543,32 @@ li + li {
     margin-top: 18px;
 }
 
+.vehicle-detail {
+    background:
+        radial-gradient(circle at 82% 18%, rgba(31, 95, 74, 0.09), transparent 34%),
+        linear-gradient(180deg, #f3efe6 0%, #e4eee9 100%);
+}
+
+.vehicle-story {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+    gap: 40px;
+    align-items: stretch;
+}
+
+.vehicle-result p {
+    color: rgba(255, 255, 255, 0.86);
+}
+
+.vehicle-outcomes {
+    margin-top: 28px;
+}
+
+.vehicle-cta {
+    margin-top: 34px;
+    padding: 54px 0 0;
+}
+
 .case {
     background: linear-gradient(180deg, var(--surface-cool) 0%, #f3efe6 100%);
 }
@@ -849,6 +875,7 @@ button:disabled {
     .service-columns,
     .contact-layout,
     .policy-layout,
+    .vehicle-story,
     .form-grid {
         grid-template-columns: 1fr;
     }
