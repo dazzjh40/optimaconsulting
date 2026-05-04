@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /*.old$
 
 Sitemap: https://optimaconsulting.co.uk/sitemap.xml
