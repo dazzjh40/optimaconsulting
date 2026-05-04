@@ -516,6 +516,33 @@ li + li {
     margin: 28px 0;
 }
 
+.training-feature .btn {
+    margin-top: 24px;
+}
+
+.training-detail {
+    background:
+        radial-gradient(circle at 12% 20%, rgba(143, 100, 40, 0.08), transparent 30%),
+        linear-gradient(180deg, #eef4f0 0%, #f4eee4 100%);
+}
+
+.training-columns {
+    align-items: stretch;
+    margin-top: 34px;
+}
+
+.training-columns > * {
+    height: 100%;
+}
+
+.training-governance {
+    background: rgba(255, 255, 255, 0.94);
+}
+
+.training-outcomes {
+    margin-top: 18px;
+}
+
 .case {
     background: linear-gradient(180deg, var(--surface-cool) 0%, #f3efe6 100%);
 }
