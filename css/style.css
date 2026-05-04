@@ -1,311 +1,166 @@
-/* RESET */
+/* Existing Styles */
+
+/* General Styles */
 body {
-    margin:0;
     font-family: Arial, sans-serif;
-    background:#0b0b0b;
-    color:#fff;
-    padding-top:90px;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
 }
 
-/* GLOBAL CONTAINER */
-.container {
-    max-width:1100px;
-    margin:auto;
-    padding:0 20px;
+/* Navbar Styling */
+.navbar-container {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 100;
 }
 
-/* NAV BAR */
-/* General Styles for Navbar */
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #333; /* You can adjust the color */
-  padding: 10px 0;
-  z-index: 1000; /* Ensures navbar stays on top */
+    background-color: rgba(0, 0, 0, 0.7); /* Transparent dark background */
+    padding: 15px;
+    position: relative;
 }
 
 .navbar-list {
-  display: flex;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-  list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
 }
 
 .navbar-list li {
-  margin: 0 15px;
+    margin: 0 15px;
 }
 
 .navbar-list li a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  padding: 8px 16px;
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px;
 }
 
 .navbar-list li a:hover {
-  background-color: #575757; /* Change to desired hover color */
-  border-radius: 4px;
+    background-color: #575757;
+    border-radius: 4px;
 }
 
-/* Add space for content to avoid overlap with navbar */
-body {
-  padding-top: 60px; /* Adjust this if your navbar is taller */
+/* Main Header */
+.main-header {
+    background: url('/path/to/your/background-image.jpg') no-repeat center center/cover;
+    position: relative;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    padding: 0 20px;
 }
 
-/* TYPOGRAPHY */
-h1 {
-    font-size:clamp(32px, 5vw, 56px);
-    line-height:1.15;
-    margin-bottom:20px;
+.main-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay for better text contrast */
 }
 
-h2 {
-    font-size:clamp(24px, 3vw, 32px);
-    margin-bottom:15px;
+.header-content {
+    position: relative;
+    z-index: 1;
 }
 
-h3 {
-    font-size:18px;
-    color:#00ff9c;
+.header-content h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
 }
 
-p {
-    color:#bbb;
-    line-height:1.6;
+.cta-btn {
+    background-color: #00b300;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    text-transform: uppercase;
 }
 
-/* HERO */
-.hero {
-    display:flex;
-    align-items:center;
-    min-height:70vh;
-
-    padding:clamp(100px, 10vw, 140px) 20px 80px;
-
-    background:
-        linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.9)),
-        url('../images/hero-texture.webp') center/cover no-repeat;
+.cta-btn:hover {
+    background-color: #009900;
 }
 
-    .service-flytipping {
-    background: url("../images/flytipping.webp") center/cover no-repeat;
-}
-
-.service-vehicles {
-    background: url("../images/abandoned.webp") center/cover no-repeat;
-}
-
-.hero-inner {
-    max-width:900px;
-    margin:0 auto;
-}
-
-/* EYEBROW */
-.eyebrow {
-    color:#00ff9c;
-    font-size:0.8rem;
-    margin-bottom:10px;
-}
-
-/* BUTTON */
-.btn {
-    display:inline-block;
-    margin-top:20px;
-    padding:14px 22px;
-    background:#00ff9c;
-    color:#000;
-    border-radius:6px;
-    text-decoration:none;
-    font-weight:600;
-}
-
-/* SECTION */
-.section {
-    padding:clamp(60px, 8vw, 100px) 0;
-    text-align:center;
-}
-
-/* SPLIT LAYOUT */
-.split {
-    padding:clamp(60px, 8vw, 100px) 0;
-}
-
-.split-grid {
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:40px;
-    align-items:center;
-}
-
-.split img {
-    width:100%;
-    height:260px;
-    object-fit:cover;
-    border-radius:8px;
-}
-
-/* CASE STUDY */
-.case {
-    padding:clamp(60px, 8vw, 100px) 0;
-    background:#111;
-}
-
-.case-grid {
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:50px;
-    align-items:center;
-}
-
-.case img {
-    width:100%;
-    height:260px;
-    object-fit:cover;
-    border-radius:8px;
-}
-
-/* ALT CASE */
-.case-alt {
-    padding:clamp(60px, 8vw, 100px) 0;
-}
-
-.narrow {
-    max-width:700px;
-    margin:auto;
-}
-
-/* LISTS */
-ul {
-    margin:20px 0;
-    padding-left:20px;
-}
-
-li {
-    margin-bottom:8px;
-    color:#ccc;
-}
-
-/* CREDIBILITY */
-.credibility {
-    padding:clamp(60px, 8vw, 100px) 0;
-    background:#0f0f0f;
-}
-
-.grid-3 {
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:30px;
-    margin-top:30px;
-}
-
-/* APPROACH */
+/* Our Approach Section */
 .approach {
-    padding:clamp(60px, 8vw, 100px) 0;
+    background-color: #333;
+    color: white;
+    padding: 60px 20px;
+    text-align: center;
 }
 
-.grid-4 {
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:25px;
-    margin-top:30px;
+.approach h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
 }
 
-/* CONTACT */
-.contact {
-    background:#111;
-    padding:clamp(60px, 8vw, 100px) 0;
-    border-radius:8px;
+.approach p {
+    font-size: 1.2rem;
+    line-height: 1.6;
 }
 
-.steps {
-    margin-top:20px;
-    text-align:center;
-}
-
-.steps p {
-    margin:10px 0;
-    color:#ccc;
-}
-
-/* FORM */
-.form-grid {
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-    margin-top:40px;
-}
-
-.form-group {
-    display:flex;
-    flex-direction:column;
-}
-
-.form-group.full {
-    grid-column:1 / -1;
-}
-
-.form-group label {
-    font-size:13px;
-    color:#aaa;
-    margin-bottom:6px;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-    padding:12px;
-    border-radius:6px;
-    border:1px solid #333;
-    background:#111;
-    color:#fff;
-    font-size:14px;
-}
-
-.form-group input:focus,
-.form-group textarea:focus,
-.form-group select:focus {
-    outline:none;
-    border-color:#00ff9c;
-}
-
-.form-group .btn {
-    width:fit-content;
-}
-
-/* CENTER */
-.center {
-    text-align:center;
-}
-
-/* MOBILE */
-@media (max-width:768px) {
-
-    body {
-        padding-top:80px;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-header h1 {
+        font-size: 2rem; /* Adjust font size for smaller screens */
     }
 
-    .nav-inner {
-        height:80px;
+    .cta-btn {
+        font-size: 1rem; /* Smaller button text */
+        padding: 8px 16px;
     }
 
-    .split-grid,
-    .case-grid,
-    .grid-3,
-    .grid-4 {
-        grid-template-columns:1fr;
+    .navbar-list {
+        flex-direction: column;
+        gap: 10px;
     }
 
-    .form-grid {
-        grid-template-columns:1fr;
+    .navbar-list li a {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .main-header h1 {
+        font-size: 1.5rem; /* Even smaller text on very small screens */
     }
 
-    .hero {
-        min-height:auto;
-        padding:100px 20px 60px;
+    .cta-btn {
+        font-size: 1rem;
     }
+}
 
+/* Existing footer, card, and additional section styles */
+.footer {
+    background-color: #222;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+}
 
+.card {
+    background-color: #fff;
+    padding: 20px;
+    margin: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    font-size: 1.5rem;
+}
+
+.card p {
+    font-size: 1rem;
 }
