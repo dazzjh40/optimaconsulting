@@ -553,6 +553,30 @@ textarea:focus {
     grid-column: 1 / -1;
 }
 
+.form-message {
+    display: none;
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.form-message.full {
+    grid-column: 1 / -1;
+}
+
+.form-message.is-error {
+    display: block;
+    border: 1px solid rgba(150, 44, 44, 0.28);
+    background: #fff1f1;
+    color: #7a2323;
+}
+
+button:disabled {
+    cursor: progress;
+    opacity: 0.72;
+}
+
 .footer {
     background: #111916;
     color: rgba(255, 255, 255, 0.78);
