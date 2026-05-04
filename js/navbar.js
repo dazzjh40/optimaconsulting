@@ -1,19 +1,54 @@
-// Function to create the navbar
 function createNavbar() {
+    const currentPage = window.location.pathname.split("/").pop() || "index.html";
+    const links = [
+        ["index.html", "Home"],
+        ["about.html", "About"],
+        ["services.html", "Services"],
+        ["contact.html", "Contact"]
+    ];
+
     const navbarHTML = `
-        <nav class="navbar">
-            <ul class="navbar-list">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="services.html">Services</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
+        <nav class="navbar" aria-label="Main navigation">
+            <div class="navbar-inner">
+                <a class="navbar-brand" href="index.html">Optima Consulting</a>
+                <button class="navbar-toggle" type="button" aria-expanded="false" aria-controls="main-menu">
+                    <span class="sr-only">Open menu</span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                    <span class="hamburger-line"></span>
+                </button>
+                <ul class="navbar-list" id="main-menu">
+                    ${links.map(([href, label]) => `
+                        <li><a href="${href}"${href === currentPage ? ' aria-current="page"' : ""}>${label}</a></li>
+                    `).join("")}
+                </ul>
+            </div>
         </nav>
     `;
-    
-    // Insert the navbar at the top of the page (before body content)
-    document.body.insertAdjacentHTML('afterbegin', navbarHTML);
+
+    document.body.insertAdjacentHTML("afterbegin", navbarHTML);
+
+    const navbar = document.querySelector(".navbar");
+    const toggle = document.querySelector(".navbar-toggle");
+    const menu = document.getElementById("main-menu");
+
+    if (!navbar || !toggle || !menu) {
+        return;
+    }
+
+    toggle.addEventListener("click", function () {
+        const isOpen = navbar.classList.toggle("is-open");
+        toggle.setAttribute("aria-expanded", String(isOpen));
+        toggle.querySelector(".sr-only").textContent = isOpen ? "Close menu" : "Open menu";
+    });
+
+    menu.addEventListener("click", function (event) {
+        if (event.target.closest("a")) {
+            navbar.classList.remove("is-open");
+            toggle.setAttribute("aria-expanded", "false");
+            toggle.querySelector(".sr-only").textContent = "Open menu";
+        }
+    });
 }
 
-// Call the function to insert the navbar when the page loads
-window.onload = createNavbar;
+document.addEventListener("DOMContentLoaded", createNavbar);
