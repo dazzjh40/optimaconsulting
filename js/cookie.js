@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function showBanner() {
-        console.log("Showing cookie banner");
 
         const banner = document.createElement("div");
         banner.className = "cookie-banner";
@@ -47,42 +46,42 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function loadAnalytics() {
 
-    if (window.gaLoaded) return;
-    window.gaLoaded = true;
+        if (window.gaLoaded) return;
+        window.gaLoaded = true;
 
-    console.log("Loading Google Analytics");
+        console.log("Loading Google Analytics");
 
-    // Load GA script
-    const script = document.createElement("script");
-    script.src = "https://www.googletagmanager.com/gtag/js?id=G-P6N0KNTGHP";
-    script.async = true;
-    document.head.appendChild(script);
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function(){ dataLayer.push(arguments); };
 
-    // 🔴 DO NOT redefine gtag here
+        const script = document.createElement("script");
+        script.src = "https://www.googletagmanager.com/gtag/js?id=G-P6N0KNTGHP";
+        script.async = true;
 
-    window.dataLayer = window.dataLayer || [];
-    window.gtag = function(){ dataLayer.push(arguments); };
+        script.onload = function () {
 
-    // Initialise immediately
-    gtag('js', new Date());
+            console.log("GA script loaded");
 
-    gtag('config', 'G-P6N0KNTGHP', {
-        anonymize_ip: true,
-        debug_mode: true
-    });
+            gtag('js', new Date());
 
-    console.log("GA configured");
+            gtag('config', 'G-P6N0KNTGHP', {
+                anonymize_ip: true,
+                debug_mode: true
+            });
 
-    // Test event AFTER config
-    setTimeout(() => {
-        gtag('event', 'page_view', { debug_mode: true });
-    }, 500);
-}
+            console.log("GA configured");
 
-/* -------------------------------------------------- */
-/* OPTIONAL: RESET CONSENT (FOR TESTING OR SETTINGS)  */
-/* -------------------------------------------------- */
+            gtag('event', 'page_view', {
+                debug_mode: true
+            });
+        };
 
+        document.head.appendChild(script);
+    }
+
+}); // ✅ THIS LINE IS CRITICAL
+
+// ✅ MUST be outside the DOMContentLoaded block
 window.resetCookieConsent = function () {
     localStorage.removeItem("cookie_consent");
     location.reload();
