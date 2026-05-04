@@ -47,41 +47,40 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function loadAnalytics() {
 
-        if (window.gaLoaded) return;
-        window.gaLoaded = true;
+    if (window.gaLoaded) return;
+    window.gaLoaded = true;
 
-        console.log("Loading Google Analytics");
+    console.log("Loading Google Analytics");
 
-        // Ensure dataLayer exists BEFORE script loads
-        window.dataLayer = window.dataLayer || [];
-        window.gtag = function(){ dataLayer.push(arguments); };
+    // Load GA script
+    const script = document.createElement("script");
+    script.src = "https://www.googletagmanager.com/gtag/js?id=G-P6N0KNTGHP";
+    script.async = true;
+    document.head.appendChild(script);
 
-        // Load GA script
-        const script = document.createElement("script");
-        script.src = "https://www.googletagmanager.com/gtag/js?id=G-P6N0KNTGHP";
-        script.async = true;
-        document.head.appendChild(script);
+    // 🔴 DO NOT redefine gtag here
 
-        // Initialise immediately
-        gtag('js', new Date());
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function(){ dataLayer.push(arguments); };
 
-        gtag('config', 'G-69V22F8BZN', {
-            anonymize_ip: true,
-            debug_mode: true
-        });
+    // Initialise immediately
+    gtag('js', new Date());
 
-        console.log("GA configured");
+    gtag('config', 'G-P6N0KNTGHP', {
+        anonymize_ip: true,
+        debug_mode: true
+    });
 
-        // Fire a test page_view AFTER config
-        setTimeout(() => {
-            gtag('event', 'page_view', { debug_mode: true });
-        }, 500);
-    }
+    console.log("GA configured");
 
-}); // ✅ THIS WAS MISSING
+    // Test event AFTER config
+    setTimeout(() => {
+        gtag('event', 'page_view', { debug_mode: true });
+    }, 500);
+}
 
 /* -------------------------------------------------- */
-/* OPTIONAL: RESET CONSENT (GLOBAL SCOPE)             */
+/* OPTIONAL: RESET CONSENT (FOR TESTING OR SETTINGS)  */
 /* -------------------------------------------------- */
 
 window.resetCookieConsent = function () {
