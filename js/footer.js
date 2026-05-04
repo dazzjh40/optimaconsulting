@@ -1,8 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
-
     const footer = `
     <div class="footer-inner">
-        <p>© Optima Consulting</p>
+        <p>&copy; Optima Consulting</p>
 
         <p class="footer-links">
             <a href="privacy.html">Privacy Policy</a>
@@ -20,5 +19,4 @@ document.addEventListener("DOMContentLoaded", function () {
     footerContainer.innerHTML = footer;
 
     document.body.appendChild(footerContainer);
-
 });
