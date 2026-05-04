@@ -15,50 +15,44 @@ body {
 }
 
 /* NAV BAR */
-.nav {
-    position:fixed;
-    top:0;
-    width:100%;
-    z-index:1000;
-    background: rgba(0,0,0,0.9);
-    backdrop-filter: blur(6px);
-    border-bottom:1px solid rgba(255,255,255,0.05);
+/* General Styles for Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333; /* You can adjust the color */
+  padding: 10px 0;
+  z-index: 1000; /* Ensures navbar stays on top */
 }
 
-.nav-inner {
-    height:90px;
-    padding:0 20px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
+.navbar-list {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-/* LOGO */
-.logo a {
-    font-size:clamp(18px, 2vw, 22px);
-    font-weight:600;
-    color:#ffffff;
-    text-decoration:none;
+.navbar-list li {
+  margin: 0 15px;
 }
 
-/* NAV LINKS */
-.nav-links a {
-    color:#ffffff;
-    text-decoration:none;
-    margin-left:30px;
-    font-size:clamp(14px, 1.2vw, 16px);
-    opacity:0.85;
-    transition:all 0.2s ease;
+.navbar-list li a {
+  color: white;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 8px 16px;
 }
 
-.nav-links a:hover,
-.nav-links a.active {
-    color:#00ff9c;
-    opacity:1;
+.navbar-list li a:hover {
+  background-color: #575757; /* Change to desired hover color */
+  border-radius: 4px;
 }
 
-.nav a:visited {
-    color:#ffffff;
+/* Add space for content to avoid overlap with navbar */
+body {
+  padding-top: 60px; /* Adjust this if your navbar is taller */
 }
 
 /* TYPOGRAPHY */
