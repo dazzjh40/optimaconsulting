@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function () {
     const footer = `
     <div class="footer-inner">
-        <p>&copy; Optima Consulting</p>
+        <p>&copy; Optima Environmental Consulting</p>
 
         <p class="footer-links">
             <a href="privacy.html">Privacy Policy</a>

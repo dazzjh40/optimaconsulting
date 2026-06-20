@@ -10,7 +10,10 @@ function createNavbar() {
     const navbarHTML = `
         <nav class="navbar" aria-label="Main navigation">
             <div class="navbar-inner">
-                <a class="navbar-brand" href="/">Optima Consulting</a>
+                <a class="navbar-brand" href="/">
+                    <img src="/images/logo.png" alt="Optima Environmental Consulting" class="navbar-logo">
+                    <span>Optima Environmental Consulting</span>
+                </a>
                 <button class="navbar-toggle" type="button" aria-expanded="false" aria-controls="main-menu">
                     <span class="sr-only">Open menu</span>
                     <span class="hamburger-line"></span>

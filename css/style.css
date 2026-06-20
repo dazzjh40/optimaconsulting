@@ -73,10 +73,21 @@ a {
 }
 
 .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     color: #fff;
     font-size: 1rem;
     font-weight: 800;
     text-decoration: none;
+    line-height: 1.1;
+}
+
+.navbar-logo {
+    height: 34px;
+    width: auto;
+    border-radius: 6px;
+    flex-shrink: 0;
 }
 
 .navbar-list {
